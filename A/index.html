@@ -7,14 +7,136 @@
 </head>
 <body>
 <div class="text">
-            A.<br><br>The epochal breakthrough in our understanding of the social formation in clan societies came from Marcel&nbsp;Mauss. He analyzed it not in terms of productive forces or means of production, but rather of exchange. This was not commodity exchange, but rather the reciprocal exchange of gift/counter-gift. I call this <div class="highlighted-text-a"><a href="../A/Images/index.html">Mode of Exchange A</a></div>. This kind of exchange is comprised of three rules: one must give gifts, one must accept gifts, and one must reciprocate for gifts received. These rules are not something that people invented. They are instead imposed by a ‘magical power’ that people are compelled to obey. The social formation of clan society is created through this principle of exchange. For example, the form of kinship is established through reciprocal exchanges in which one gives one’s daughter or son to another community and then receives in turn a reciprocal return gift. In this sense, the clan society social formation was established by exchange in this broad sense, and this is what constitutes its true economic base.
+            A.<br><br>The epochal breakthrough in our understanding of the social formation in clan societies came from Marcel&nbsp;Mauss. He analyzed it not in terms of productive forces or means of production, but rather of exchange. This was not commodity exchange, but rather the reciprocal exchange of gift/counter-gift. I call this <div class="highlighted-text-a" id="open-carousel-btn"><a href="#">Mode of Exchange A</a></div>. This kind of exchange is comprised of three rules: one must give gifts, one must accept gifts, and one must reciprocate for gifts received. These rules are not something that people invented. They are instead imposed by a ‘magical power’ that people are compelled to obey. The social formation of clan society is created through this principle of exchange. For example, the form of kinship is established through reciprocal exchanges in which one gives one’s daughter or son to another community and then receives in turn a reciprocal return gift. In this sense, the clan society social formation was established by exchange in this broad sense, and this is what constitutes its true economic base.
  </div>
-
-<div class="arrow-back"><a href="../index.html">
+ <div class="arrow-back"><a href="../index.html">
     ←
 </a></div>
 <div class="arrow-go"><a href="../B/index.html">
     →
+</a></div>
+
+<!-- Carousel markup -->
+<div class="carousel-overlay" id="carouselOverlay">
+  <div class="carousel-container">
+    <img class="carousel-image" id="carouselImage" src="" alt="">
+    <div class="carousel-zone left" id="zoneLeft" aria-label="Previous image"></div>
+    <div class="carousel-zone right" id="zoneRight" aria-label="Next image"></div>
+    <button class="carousel-exit" id="carouselExit" aria-label="Close carousel">x</button>
+  </div>
 </div>
+
+
+<script>
+(function () {
+  const images = [
+    { src: "../Images/A/1_image-png.png", caption: "In a game of chess, gameplay can only occur when both players are active participants in the back and forth. While there is no punishment to not returning the act of participation, by sitting in the chair, you are situationally expected to actively engage in the game." },
+    { src: "../Images/A/2_sketches-by-architect-sarah-wigglesworth.jpeg", caption: "Increasing Disorder in a Dining Table is a result of a social gathering that calls for individuals to dynamically pass plates around, swap out used dishes for new ones, and to hold conversation with those around them." },
+    { src: "../Images/A/3_img_5635.jpeg", caption: "Iron fences are a tough force that clearly indicates a boundary; one that potential intruders are expected to respect." },
+    { src: "../Images/A/4_untitled.png", caption: "Two individual trees fuse together to become one; sharing resources equally amongst them." },
+    { src: "../Images/A/5_image-2.png", caption: "Letters serve as a method of back and forth communication between two parties physically distanced from one another. Both parties must actively participate in the exchange for it to be effective." },
+    { src: "../Images/A/6_image-1.png", caption: "Letters serve as a method of back and forth communication between two parties physically distanced from one another. Both parties must actively participate in the exchange for it to be effective." },
+    { src: "../Images/A/7_img_9436-jpeg.jpeg", caption: "The letters u and l have been exchanged, taking one another's spot in the word." },
+    { src: "../Images/A/8_img_7821-jpeg.jpeg", caption: "The telephone serves as a method of back and forth communication between two parties physically distanced from one another. Both parties must actively participate in the exchange for it to be effective." },
+    { src: "../Images/A/9_bba1ccbe-f0f2-4499-b0f4-fecb1f187a7f.jpeg", caption: "" },
+    { src: "../Images/A/12_img_1685-jpeg.jpeg", caption: "" },
+    { src: "../Images/A/13_7d84cb63-c0d7-4b7d-a172-10fc1f44f5c7-jpeg.jpeg", caption: "" },
+    { src: "../Images/A/14_4235699721_1e68d58a8e_c.jpeg", caption: "" },
+    { src: "../Images/A/15_shaker-trademark.webp", caption: "" },
+    { src: "../Images/A/16_o-shaker-chair-start.webp", caption: "" },
+    { src: "../Images/A/17_screenshot-2026-06-05-at-11-06-28.png", caption: "Relationships are a two way street that require mutual effort and understanding from both parties. In some cases, individuals " },
+    { src: "../Images/A/19_img_4558-jpeg.jpeg", caption: "Iron fences are a tough force that clearly indicates a boundary; one that potential intruders are expected to respect." },
+    { src: "../Images/A/20_img_4099-jpeg.jpeg", caption: "Trees intake minerals and water from the soil as well as carbon dioxide from the air. In return, they produce oxygen to be cycled back into the atmosphere." },
+    { src: "../Images/A/21_img_0678-jpeg.jpeg", caption: "The telephone serves as a method of back and forth communication between two parties physically distanced from one another. Both parties must actively participate in the exchange for it to be effective." },
+    { src: "../Images/A/22_img_6128.jpeg", caption: "The plastic chairs circle the table, suggesting the remnants of a social gathering where individuals engaged in social exchange." },
+    { src: "../Images/A/23_e8a92cc5-7453-4714-8da4-47e166cbd13d.jpeg", caption: "Users comment on other users' posts in hopes of engagement. This example contains multiple internet buzzwords relevant in the year 2026, which is expected to elicit engagement." }
+  ];
+
+  let currentIndex = 0;
+
+  const overlay   = document.getElementById('carouselOverlay');
+  const imageEl   = document.getElementById('carouselImage');
+  const openBtn   = document.getElementById('open-carousel-btn');
+  const exitBtn   = document.getElementById('carouselExit');
+  const zoneLeft  = document.getElementById('zoneLeft');
+  const zoneRight = document.getElementById('zoneRight');
+
+  // Cache of Image objects so the browser doesn't re-fetch already-loaded images
+  const preloadCache = new Map();
+
+  function preload(index) {
+    const item = images[(index + images.length) % images.length];
+    if (preloadCache.has(item.src)) return;
+    const img = new Image();
+    img.src = item.src;
+    preloadCache.set(item.src, img);
+  }
+
+  function preloadNeighbors(index) {
+    preload(index + 1); // next
+    preload(index - 1); // previous
+  }
+
+  function render() {
+    const item = images[currentIndex];
+    imageEl.src = item.src;
+    imageEl.alt = item.caption || `Image ${currentIndex + 1}`;
+    imageEl.title = item.caption || ''; // shows as a native tooltip on hover
+    // The click zones sit on top of the image, so they need the tooltip too
+    zoneLeft.title = item.caption || '';
+    zoneRight.title = item.caption || '';
+    preloadNeighbors(currentIndex); // keep the images on either side warm
+  }
+
+  function openCarousel(startIndex = 0) {
+    currentIndex = startIndex;
+    render();
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+
+  function closeCarousel() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function next() {
+    currentIndex = (currentIndex + 1) % images.length;
+    render();
+  }
+
+  function prev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    render();
+  }
+
+  // Warm the first couple images as soon as the page loads, so the very
+  // first time someone clicks "View Images" there's no loading flash either
+  preload(0);
+  preload(1);
+
+  openBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // stop the anchor from navigating to "#"
+    openCarousel(0);
+  });
+  exitBtn.addEventListener('click', closeCarousel);
+  zoneRight.addEventListener('click', next);
+  zoneLeft.addEventListener('click', prev);
+
+  // Keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') closeCarousel();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // Click outside image (on the black background) also closes it
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeCarousel();
+  });
+})();
+</script>
+
 </body>
 </html>

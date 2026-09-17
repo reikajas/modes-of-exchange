@@ -12,9 +12,6 @@
 <div class="arrow-back"><a href="../C/index.html">
     ←
 </a></div>
-<div class="arrow-go"><a href="../All/index.html">
-    →
-</div>
 
 <!-- Carousel markup -->
 <div class="carousel-overlay" id="carouselOverlay">
@@ -30,29 +27,32 @@
 <script>
 (function () {
   const images = [
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" },
-    { src: "../", caption: "" }
+    { src: "../Images/D/1_delmonte.jpeg", caption: "Del Monte, an American food production and distribution company, advertised in Japanese." },
+    { src: "../Images/D/2_3b275cee-1f37-49ae-81cc-ce2a7fe90f7c.png", caption: "Image posted by user @foidtechreviews on Instagram depicting a cultural exchange between distinct pockets of the internet. The characters involved are Kasugano Sora from the visual novel game Yosuga No Sora, and the 'Italian Brainrot' Tung Tung Tung Sahur." },
+    { src: "../Images/D/3_e8a92cc5-7453-4714-8da4-47e166cbd13d.jpeg", caption: "Screenshot of a comment referring to two distinct internet phenomenons: Wonyoungism is a viral lifestyle and self-improvement trend inspired by the habits, confidence and aesthetic of popular K-pop idol Jang Wonyoung of IVE, and Looksmaxxing is a term inspired by social media personality Clavicular, and collectively coined by the online incel/manosphere community." },
+    { src: "../Images/D/4_.jpeg", caption: "The neverending exchange between the state of being 'cringe' and 'based', essentially visualizing the concept of self-referential trend cycles." },
+    { src: "../Images/D/6_8-instagram.jpeg", caption: "This image draws parallels between a young woman of the 16th century and a modern teenager. An interesting example of how life imitates art, while highlighting the humorous difference in subject of literature." },
+    { src: "../Images/D/7_an-email-message-is-displayed-on-the-computer-s....png", caption: "An example of an impressive sense of community that the internet can bring about; the email calls for 100,000 individuals to chip in $0.58 in order to help a college student pay off their student loans." },
+    { src: "../Images/D/8_lucy-may-schofield.png", caption: "There was a time in which soldiers, having a prolonged absence from home, were thought to suffer and sometimes die of Nostalgia. This malaise later became known as homesickness. During WWII Russian soldiers sent triangular correspondence to their loved ones. In these письма-треугольники, the letter and envelope were one, allowing censors to access and omit any sensitive material without compromising the structure. The simple design meant the content and address never became separated and made the letters easily identifiable as priority mail to the postal service." },
+    { src: "../Images/D/9_img_2266-jpeg.jpeg", caption: "Literature is an example of media humans pour hours into – sometimes their entire lives – without expecting the literature to give us anything back in particular besides the experience of being immersed in the story." },
+    { src: "../Images/D/11_shaker-trademark.webp", caption: "Shakers believed that craftsmanship and hard labor were forms of worshipping God. They therefore took great care of their belongings." },
+    { src: "../Images/D/12_5479f929-2b31-409f-bd4d-fd679f74729c-jpg.jpeg", caption: "Visual information of the self is passed through the phone back to the individual, but instead of affirming a fixed identity, it causes fragmentation into the ideal digital self, the alienated self and the real self." },
+    { src: "../Images/D/13_sry-abt-ur-wall-png.png", caption: "A silly grafitti likley left behind just for the sake of humorous art." },
+    { src: "../Images/D/16_kiiikiii-whykiiikiii-the-3rd-ep-v0-v6m3sd23niih1.webp", caption: "An iconic album by K-pop group KiiiKiii that makes references to early to mid 2010's childhood. To listeners who were within their childhood/teenage years back then, this is a nostalgic reminder and a form of self-reference." },
+    { src: "../Images/D/17_1_ever2late_2.jpeg", caption: "An iconic album by K-pop group KiiiKiii that makes references to early to mid 2010's childhood. To listeners who were within their childhood/teenage years back then, this is a nostalgic reminder and a form of self-reference." },
+    { src: "../Images/D/18_img_7852-jpeg.jpeg", caption: "An iconic 2025 internet meme derived from Zara Larsson's song 'Symphony' interpreted by Chinese netizens. The character 'cao' is equivalent to the exclamation 'fuck' or 'shit' in English." },
+    { src: "../Images/D/19_image.png", caption: "The medieval revival trend re-interprets the visual language of medieval times into modern contexts." },
+    { src: "../Images/D/20_img_2461-jpeg.jpeg", caption: "An charming event hosted by the neighborhood for the sake of bringing the community together." },
+    { src: "../Images/D/21_musica-con-influencia-africana-diaspora-music-a....jpeg", caption: "A map visualizing the music of the African diaspora, which went on to have global influences in songmaking." },
+    { src: "../Images/D/22_1788453829974-387558f9-89b5-4c27-8c95-42a553412....jpeg", caption: "This individual goes on a seemingly meaningless journey to live within the self-constituted constraints of a circular area. People like doing things just for the sake of doing them." },
+    { src: "../Images/D/24_img_3439-jpeg.jpeg", caption: "Humans imagine their stuffed animals having souls or consciousness, and perform the spectacle of engaging in conversation with an inatimate object." },
+    { src: "../Images/D/25_1788326184762-c93531e5-8a36-49db-9e3b-14a125d44....jpeg", caption: "Art is an example of media humans pour hours into – sometimes their entire lives – without expecting the art to give us anything back in particular besides the experience of being immersed in it." },
+    { src: "../Images/D/26_1788326184762-c93531e5-8a36-49db-9e3b-14a125d44....jpeg", caption: "The act of visiting ancient sites is an example of an activity humans engage in without expecting the site to give us anything back in particular besides the experience of being immersed in history and the sense of awe." },
+    { src: "../Images/D/27_1788326184762-c93531e5-8a36-49db-9e3b-14a125d44....jpeg", caption: "Art is an example of media humans pour hours into – sometimes their entire lives – without expecting the art to give us anything back in particular besides the experience of being immersed in it." },
+    { src: "../Images/D/28_1788326128548-17d79a19-7320-44de-b763-1fd2037e5....jpeg", caption: "The act of visiting sacred natural sites is an example of an activity humans engage in without expecting the site to give us anything back in particular besides the experience of being immersed in nature and the sense of awe." },
+    { src: "../Images/D/29_img_6086.jpeg", caption: "Humorous cultural exchange between two Twitter users, one laughing over the automatic translation feature giving the other user a heavy dialect distinctive to Beijing rather than the usual standard Mandarin." },
+    { src: "../Images/D/30_1f0a974e-6c51-4be6-ad13-c7465cddbbcf.jpeg", caption: "A difficulty level 10 meme that requires an understanding of three languages in order to be funny. Illustrates the extent of lingustic exchange powered by the internet." },
+    { src: "../Images/D/31_img_6104.jpeg", caption: "A piece of my hair carried to a place I've never been. No need to thank me, it's a free gift!"}
   ];
 
   let currentIndex = 0;

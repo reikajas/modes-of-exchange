@@ -145,7 +145,7 @@ a {
     justify-content: center;
   }
 
-  .carousel-image {
+  .carousel-image-a , .carousel-image-b , .carousel-image-c , .carousel-image-d {
     max-width: 90vw;
     max-height: 85vh;
     width: auto;
@@ -155,6 +155,19 @@ a {
     -webkit-user-drag: none;
   }
 
+.carousel-image-a {
+    outline: 5px solid #00D9FF;
+    }
+.carousel-image-b {
+    outline: 5px solid #FF6F00;
+    }
+.carousel-image-c {
+    outline: 5px solid #E0F;
+    }
+.carousel-image-d {
+    outline: 5px solid #7F0;
+    }
+    
   /* Left/right click zones covering the image, each with a custom cursor */
   .carousel-zone {
     position: absolute;

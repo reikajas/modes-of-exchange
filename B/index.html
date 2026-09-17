@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="text">
-             B.<br><br>What was the situation with state society that emerged after clan society? It may appear to be grounded primarily in violent exploitation, but in fact it is also based on a kind of ‘exchange’: an exchange of submission for protection. The state has its beginnings in conquest and violent domination, but it can only become a sustained form of rule when the ruled willingly submit to it. This becomes possible when they receive protection in return for their submission—in other words, when the relation of ruler/ruled becomes a kind of exchange. This gives rise to a form of ‘power’ other than violence. This power binds not only the ruled, but also the rulers, because if the rulers are unable to protect the ruled, they will lose their position as rulers. I call this <div class="highlighted-text-b"><a href="../B/Images/index.html">Mode of Exchange B</a></div>. Just as with Mode of Exchange A, a kind of nonmaterial ‘power’ is at work in <div class="highlighted-text-b"><a href="../B/Images/index.html">Mode of Exchange B</a></div>. But this is something born out of ‘exchange’ itself, not something that somehow bubbled up from within the ideational superstructure.
+             B.<br><br>What was the situation with state society that emerged after clan society? It may appear to be grounded primarily in violent exploitation, but in fact it is also based on a kind of ‘exchange’: an exchange of submission for protection. The state has its beginnings in conquest and violent domination, but it can only become a sustained form of rule when the ruled willingly submit to it. This becomes possible when they receive protection in return for their submission—in other words, when the relation of ruler/ruled becomes a kind of exchange. This gives rise to a form of ‘power’ other than violence. This power binds not only the ruled, but also the rulers, because if the rulers are unable to protect the ruled, they will lose their position as rulers. I call this <div class="highlighted-text-b" id="open-carousel-btn"><a href="#">Mode of Exchange B</a></div>. Just as with Mode of Exchange A, a kind of nonmaterial ‘power’ is at work in <div class="highlighted-text-b" id="open-carousel-btn"><a href="#">Mode of Exchange B</a></div>. But this is something born out of ‘exchange’ itself, not something that somehow bubbled up from within the ideational superstructure.
  </div>
 
 <div class="arrow-back"><a href="../A/index.html">
@@ -16,5 +16,121 @@
 <div class="arrow-go"><a href="../C/index.html">
     →
 </a></div>
+
+<!-- Carousel markup -->
+<div class="carousel-overlay" id="carouselOverlay">
+  <div class="carousel-container">
+    <img class="carousel-image" id="carouselImage" src="" alt="">
+    <div class="carousel-zone left" id="zoneLeft" aria-label="Previous image"></div>
+    <div class="carousel-zone right" id="zoneRight" aria-label="Next image"></div>
+    <button class="carousel-exit" id="carouselExit" aria-label="Close carousel">x</button>
+  </div>
+</div>
+
+
+<script>
+(function () {
+  const images = [
+    { src: "../Images/B/1_2000-back-in-the-year-2000-this-boy-used-to-ski....jpeg", caption: "Back in the year 2000, this boy used to skip school just to go clash with the temporary entity occupation soldiers, until the school called his parents. His mother went to the school, found out, scolded him harshly, and even beat him out of fear for his safety.Every single day, he would still go back to the clashes. Not only that, he would stand in front of tanks, dancing and singing: “Even if they break my bones, I won’t crawl. Even if they demolish my home, I won’t be afraid.” Then he would throw stones.A French photographer named Laurent captured this iconic picture of him, from behind, throwing a stone at a Merkava tank. The image spread widely. Ten days later, on November 8, 2000, as he bent down to pick up a stone, a 500-caliber bullet pierced his neck and came out the other side. His story ended in an instant.This child challenged a tank with just a stone.The picture is of the legendary martyr child Fares Odeh." },
+    { src: "../Images/B/2_85596974-6540-48f1-8e0e-f4f0cfdb239a-gif.gif", caption: "Smaller systems submit as a part of bigger systems." },
+    { src: "../Images/B/3_image-3.png", caption: "Data visualization that documents one of the last official uses of Arabic script in the Turkish language, before the Turkish alphabet reform of 1928 brought its replacement with the Latin alphabet." },
+    { src: "../Images/B/4_img_5859-jpeg.jpeg", caption: "In most domestic settings, pets are subjected to the conditions set by their owners, which plays a huge part in determining their quality of life." },
+    { src: "../Images/B/5_img_4848-jpeg.jpeg", caption: "As a body of centralized authority, the church requires its members to pool their resources through voluntary offerings, pledges and calculated tithes, which get redistributed based on collective needs." },
+    { src: "../Images/B/6_img_2625-jpeg.jpeg", caption: "The Consolidated Sandwich Group is a silly inside joke amongst the culinary team behind this restaurant that mimics a corporate conglomerate." },
+    { src: "../Images/B/7_img_2557-jpeg.jpeg", caption: "The image reads, The artificially slowed heart allows us to distinguish the mechanism of contraction of the atrium, ventricle and bulb. Scientific testing on animals subjects them to human whims, errors and fascinations with no ability to object." },
+    { src: "../Images/B/8_sry-abt-ur-wall-png.png", caption: "Graffiti can often be a way to communicate dissatisfaction and rebel against corporate or government powers. This specific instance might not be the case though. " },
+    { src: "../Images/B/9_i-used-piss.jpeg", caption: "A humorous depiction of opportunists using the capitalism system to make as much personal profit as possible, regardless of ethical rules." },
+    { src: "../Images/B/11_kiiikiii-whykiiikiii-the-3rd-ep-v0-v6m3sd23niih1.webp", caption: "The K-pop industry is a hugely exploitative industry that takes advantage of young artists for company profit. As of 2026, the big 4 powerhouses that dominate the market are HYBE, SM Entertainment, JYP Entertainment, and YG Entertainment." },
+    { src: "../Images/B/12_1788486715550-7757bc39-fdcb-4328-b66e-850643da5....jpeg", caption: "In most domestic settings, pets are subjected to the conditions set by their owners, which plays a huge part in determining their quality of life." },
+    { src: "../Images/B/13_img_5711.jpeg", caption: "Across many branches of Christianity, adherents often refer to the Holy Bible as a rulebook to guide how they live every day." },
+    { src: "../Images/B/14_2560px-ming-expeditions-svg-png.png", caption: "The maritime expeditions during the Ming Dynasty aimed to assert Ming dominance, secure tributary states, and establish trade routes." },
+  ];
+
+  let currentIndex = 0;
+
+  const overlay   = document.getElementById('carouselOverlay');
+  const imageEl   = document.getElementById('carouselImage');
+  const openBtn   = document.getElementById('open-carousel-btn');
+  const exitBtn   = document.getElementById('carouselExit');
+  const zoneLeft  = document.getElementById('zoneLeft');
+  const zoneRight = document.getElementById('zoneRight');
+
+  // Cache of Image objects so the browser doesn't re-fetch already-loaded images
+  const preloadCache = new Map();
+
+  function preload(index) {
+    const item = images[(index + images.length) % images.length];
+    if (preloadCache.has(item.src)) return;
+    const img = new Image();
+    img.src = item.src;
+    preloadCache.set(item.src, img);
+  }
+
+  function preloadNeighbors(index) {
+    preload(index + 1); // next
+    preload(index - 1); // previous
+  }
+
+  function render() {
+    const item = images[currentIndex];
+    imageEl.src = item.src;
+    imageEl.alt = item.caption || `Image ${currentIndex + 1}`;
+    imageEl.title = item.caption || ''; // shows as a native tooltip on hover
+    // The click zones sit on top of the image, so they need the tooltip too
+    zoneLeft.title = item.caption || '';
+    zoneRight.title = item.caption || '';
+    preloadNeighbors(currentIndex); // keep the images on either side warm
+  }
+
+  function openCarousel(startIndex = 0) {
+    currentIndex = startIndex;
+    render();
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+
+  function closeCarousel() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function next() {
+    currentIndex = (currentIndex + 1) % images.length;
+    render();
+  }
+
+  function prev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    render();
+  }
+
+  // Warm the first couple images as soon as the page loads, so the very
+  // first time someone clicks "View Images" there's no loading flash either
+  preload(0);
+  preload(1);
+
+  openBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // stop the anchor from navigating to "#"
+    openCarousel(0);
+  });
+  exitBtn.addEventListener('click', closeCarousel);
+  zoneRight.addEventListener('click', next);
+  zoneLeft.addEventListener('click', prev);
+
+  // Keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') closeCarousel();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // Click outside image (on the black background) also closes it
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeCarousel();
+  });
+})();
+</script>
+
 </body>
 </html>

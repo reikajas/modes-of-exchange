@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="text">
-            C.<br><br><div class="highlighted-text-c"><a href="../C/Images/index.html">Mode of Exchange C</a></div> is commodity exchange. This may appear at first glance to be a simple exchange of material goods, but that is incorrect. Here too an ideational power is at work—and it arises from ‘exchange’ itself. According to Karl&nbspMarx, exchange takes place with an unknown, perhaps dangerous other. Hence, the need arises for a ‘power’ to control the other—a ‘power’ of an ideational/religious nature. It is, in fact, what we call ‘credit’ or ‘trust.’
+            C.<br><br><div class="highlighted-text-c" id="open-carousel-btn"><a href="#">Mode of Exchange C</a></div> is commodity exchange. This may appear at first glance to be a simple exchange of material goods, but that is incorrect. Here too an ideational power is at work—and it arises from ‘exchange’ itself. According to Karl&nbspMarx, exchange takes place with an unknown, perhaps dangerous other. Hence, the need arises for a ‘power’ to control the other—a ‘power’ of an ideational/religious nature. It is, in fact, what we call ‘credit’ or ‘trust.’
 </div>
 <div class="arrow-back"><a href="../B/index.html">
     ←
@@ -15,5 +15,131 @@
 <div class="arrow-go"><a href="../D/index.html">
     →
 </div>
+
+<!-- Carousel markup -->
+<div class="carousel-overlay" id="carouselOverlay">
+  <div class="carousel-container">
+    <img class="carousel-image" id="carouselImage" src="" alt="">
+    <div class="carousel-zone left" id="zoneLeft" aria-label="Previous image"></div>
+    <div class="carousel-zone right" id="zoneRight" aria-label="Next image"></div>
+    <button class="carousel-exit" id="carouselExit" aria-label="Close carousel">x</button>
+  </div>
+</div>
+
+
+<script>
+(function () {
+  const images = [
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" },
+    { src: "../", caption: "" }
+  ];
+
+  let currentIndex = 0;
+
+  const overlay   = document.getElementById('carouselOverlay');
+  const imageEl   = document.getElementById('carouselImage');
+  const openBtn   = document.getElementById('open-carousel-btn');
+  const exitBtn   = document.getElementById('carouselExit');
+  const zoneLeft  = document.getElementById('zoneLeft');
+  const zoneRight = document.getElementById('zoneRight');
+
+  // Cache of Image objects so the browser doesn't re-fetch already-loaded images
+  const preloadCache = new Map();
+
+  function preload(index) {
+    const item = images[(index + images.length) % images.length];
+    if (preloadCache.has(item.src)) return;
+    const img = new Image();
+    img.src = item.src;
+    preloadCache.set(item.src, img);
+  }
+
+  function preloadNeighbors(index) {
+    preload(index + 1); // next
+    preload(index - 1); // previous
+  }
+
+  function render() {
+    const item = images[currentIndex];
+    imageEl.src = item.src;
+    imageEl.alt = item.caption || `Image ${currentIndex + 1}`;
+    imageEl.title = item.caption || ''; // shows as a native tooltip on hover
+    // The click zones sit on top of the image, so they need the tooltip too
+    zoneLeft.title = item.caption || '';
+    zoneRight.title = item.caption || '';
+    preloadNeighbors(currentIndex); // keep the images on either side warm
+  }
+
+  function openCarousel(startIndex = 0) {
+    currentIndex = startIndex;
+    render();
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+
+  function closeCarousel() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function next() {
+    currentIndex = (currentIndex + 1) % images.length;
+    render();
+  }
+
+  function prev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    render();
+  }
+
+  // Warm the first couple images as soon as the page loads, so the very
+  // first time someone clicks "View Images" there's no loading flash either
+  preload(0);
+  preload(1);
+
+  openBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // stop the anchor from navigating to "#"
+    openCarousel(0);
+  });
+  exitBtn.addEventListener('click', closeCarousel);
+  zoneRight.addEventListener('click', next);
+  zoneLeft.addEventListener('click', prev);
+
+  // Keyboard support
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') closeCarousel();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+
+  // Click outside image (on the black background) also closes it
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeCarousel();
+  });
+})();
+</script>
+
 </body>
 </html>

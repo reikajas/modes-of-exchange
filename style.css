@@ -114,6 +114,21 @@ position: fixed;
   z-index: 1000;
 }
 
+.home {
+color: #000;
+font-family: "GT Alpina Trial";
+font-size: 4vw;
+font-style: normal;
+font-weight: 250;
+line-height: normal;
+padding: 35px 50px 35px 50px;
+position: fixed;
+bottom: 0;
+right: 50%;
+transform: translateX(50%);
+z-index: 1000;
+}
+
 a {
     all: unset;
     cursor: pointer;
@@ -167,7 +182,7 @@ a {
 .carousel-image-d {
     outline: 5px solid #7F0;
     }
-    
+
   /* Left/right click zones covering the image, each with a custom cursor */
   .carousel-zone {
     position: absolute;
